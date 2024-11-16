@@ -240,8 +240,8 @@ class StorageAnalyzer:
                                             FROM sqlite_master
                                             WHERE rootpage>0
                                               AND type == "table"''')
-
-        return [t['name'] for t in tables] + ['sqlite_master']
+        # Do not include `sqlite_master` because it doesn't hold usage data
+        return [t['name'] for t in tables]
 
     def indices(self) -> [Index]:
         """Returns the indices defined in the database.
@@ -319,8 +319,8 @@ class StorageAnalyzer:
         """Returns whether the database file is compressed."""
         if self._is_compressed is None:
             table = self.tables().pop()
-            self._iscompresed = self.table_stats(table)['is_compressed']
-        return self._iscompresed
+            self._is_compressed = self.table_stats(table)['is_compressed']
+        return self._is_compressed
 
     def autovacuum_page_count(self) -> int:
         """The number of pages used by the *auto-vacuum*
