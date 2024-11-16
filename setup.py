@@ -1,7 +1,7 @@
 from setuptools import setup
 
 setup(name='sqliteanalyzer',
-      version='0.1',
+      version='0.1.1',
       description='Extract space-usage statistics from an SQLite database',
       url='https://github.com/santigl/sqliteanalyzer',
       license='MIT',
