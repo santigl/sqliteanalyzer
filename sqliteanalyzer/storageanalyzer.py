@@ -240,9 +240,7 @@ class StorageAnalyzer:
                                             FROM sqlite_master
                                             WHERE rootpage>0
                                               AND type == "table"''')
-        # Why include sqlite_master if it doesn't hold usage data?
-        # -JL
-        #return [t['name'] for t in tables] + ['sqlite_master']
+        # Do not include `sqlite_master` because it doesn't hold usage data
         return [t['name'] for t in tables]
 
     def indices(self) -> [Index]:
